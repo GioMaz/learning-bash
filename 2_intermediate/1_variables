@@ -1,6 +1,38 @@
 #!/bin/bash
 
+#  BASH VARIABLES
 echo $BASH
+echo $BASH_VERSION
+echo; for i in {0..5}
+do
+  echo ${BASH_VERSINFO[$i]}
+done; echo
 echo $BASHPID
 echo $BASH_SUBSHELL
 ( echo $BASH_SUBSHELL )
+
+#  SYSTEM
+echo $PWD
+echo $EDITOR
+#  One of the most important: path of all binaries
+#  To add another bin directory:
+#  PATH="$PATH:/home/giovanni/.local/bin"
+echo $PATH
+echo $HOME
+echo $HOSTNAME
+echo $HOSTTYPE
+echo $MACHTYPE
+echo $OSTYPE
+#  Root has UID=0
+echo $UID
+
+#  IFS -> internal field operator, default -> " "
+#         specifies character used to spilt words
+#         in sentence
+echo $IFS
+IFS=":"
+for i in $(cat file3)
+do
+  echo $i
+done
+echo $SECONDS  # for how many seconds the script is running

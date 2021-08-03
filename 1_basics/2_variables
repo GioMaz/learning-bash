@@ -14,6 +14,7 @@ echo $var1 # $var1 is an alias of ${var1}
 echo $1 # first
 echo $* # every
 echo $@ # every
+echo $- # flags
 echo $# # count
 until [ -z "$1" ]
 do
