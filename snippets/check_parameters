@@ -1,0 +1,11 @@
+#!/bin/bash
+
+script_parameters="-a -h -m -z"
+max_parameters=3
+E_WRONG_ARGS=85
+
+if [ $# -gt $max_parameters ]
+then
+  echo "Usage: `basename $0` $script_parameters"
+  exit $E_WRONG_ARGS
+fi

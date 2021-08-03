@@ -1,0 +1,7 @@
+#!/bin/bash
+
+case $1 in
+    "ciao") echo Buongiorno $(whoami) ;;
+    "hola") echo "Buenos dias" $(whoami) ;;
+    "hello") echo "Goodmorning" $(whoami) ;;
+esac

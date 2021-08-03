@@ -1,0 +1,28 @@
+#!/bin/bash
+
+let a-=2
+echo $a
+let a+=10
+echo $a
+let a/=2
+echo $a
+let a*=2
+echo $a
+let a%=3
+echo $a
+
+echo
+
+base2=$((2#1011101))
+echo $base2
+base8=$((8#1234))
+echo $base8
+base16=$((16#2AF45))
+echo $base16
+
+echo
+
+(( a++ ))
+echo $a
+let a++
+echo $a

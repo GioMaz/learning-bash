@@ -1,0 +1,86 @@
+#!/bin/bash
+
+GENERIC_N=3
+
+#  Exit status of last command (0 good, 1 bad)
+echo $?
+
+#  Appents text into file
+echo "bruh ciao" >> file2
+
+#  Outputs nothing into file.txt (used to create blank file)
+cat /dev/null > file.txt
+#  Or
+: > file.txt
+rm file.txt
+
+#  ; Allows multiple commands on the same line
+echo "primo comando"; echo "secondo comando"
+
+#  : Means pass (can be used as true)
+#  true Also exists
+index=0
+while :
+do
+  if [ $index -gt $GENERIC_N ]
+  then
+    break
+  else
+    :
+  fi
+  #  Arithmetic expression
+  # ((index=index+1)) 
+  let index+=1
+done
+
+#  condition?result-if-true:result-if-false Statement
+(( GENERIC_N2 = GENERIC_N!=3?9:2 )); echo $GENERIC_N2
+
+#  Subshell (scope in rust)
+(a="hello"; echo $a)
+
+#  Array
+a=(file1 file2 file3)
+echo ${a[1]}
+
+#  Ranges arrays
+echo {a..z}
+echo {1..20}
+echo {A..Z}
+echo
+
+#  code block = nameless function
+{
+  n=1
+  n1=2
+  echo $(($n+$n1))
+} > file1
+
+#  Sends stdout and stderr to file.txt
+bruh &> file3
+#  Suppresses stdout and stderr
+bruh &> /dev/null
+
+#  Ascii comparison
+word1="ciao"
+word2="word"
+if [[ $word1 < $word2 ]]
+then
+  echo "$word1 < $word2"; echo
+fi
+
+#  Matches letter to change
+ls | tr 'a-z' 'A-Z'; echo
+
+#  Background job
+sleep 10 &
+echo "Job started"; echo
+
+#  Background loop
+#  for file in $(ls)
+#  do
+#    echo $file; sleep 0.5
+#  done &
+
+#  Success
+exit 0

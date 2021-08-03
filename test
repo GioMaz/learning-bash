@@ -1,0 +1,4 @@
+#!/bin/bash
+pkill $(basename $0)
+echo "BRUH"
+exit 0

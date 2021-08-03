@@ -1,0 +1,57 @@
+#!/bin/bash
+
+## TYPES
+#  bash doesnt have type (only strings and integers, setted automatically)
+#  var1 -> used for assigning
+#  $var1 -> used for retreiving its value
+var1=1
+echo var1
+echo ${var1}
+echo $var1 # $var1 is an alias of ${var1}
+
+#  parameters
+#  $?   # last command status code (nothing to do with this)
+echo $1 # first
+echo $* # every
+echo $@ # every
+echo $# # count
+until [ -z "$1" ]
+do
+  echo -n "$1 "
+  shift # moves all parameters one place before
+done
+
+#  command variables
+#  "eval $list_command" has the same outpuut of "echo $list_output"
+#  eval allows to create command from string
+list_command="ls -al"
+list_output=$(ls -al)
+
+## OPERATIONS
+#  assignment
+var2=2
+var2=$var1
+echo $var2
+
+#  null (0) initialization
+var3=
+echo $var3
+var4=$var4
+echo $var4
+#  -z check if null (used with $1)
+if [[ -z $var3 ]]; then echo "var3 null"; fi
+if [[ -z $var4 ]]; then echo "var4 null"; fi
+
+#  let allows arithmetics operators
+var1=1
+var2=2
+let var3=$var1+$var2
+echo $var3
+
+#  substitute string: ls -> grep
+b=${list_command/ls/grep}
+echo $b
+
+#  puts "ciao" in front of $1 $2 etc.
+set -- "ciao"
+echo $1

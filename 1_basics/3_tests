@@ -1,0 +1,106 @@
+#!/bin/bash
+
+#  if <command>                     -> checks status
+#  if [ <comparison> ]              -> checks result
+#  if [[ <comparison> ]]            -> checks result (newer version)
+#  [[ <comparison> ]] && <command>  -> checks result (newer version)
+#  if test <comparison>             -> checks result
+
+#  BRACKETS
+#  and
+let "num = (( 1 && 0 ))"
+echo $num
+#  and
+let "num = (( 20 && 0 ))"
+echo $num
+#  or
+let "num = (( 1 || 0 ))"
+echo $num
+#  or
+let "num = (( 99 || 0 ))"
+echo $num
+
+#  IF
+#  checks if status code is success(0) or fail(1)
+if ls -al &> /dev/null
+then
+  echo "Command succeded"
+else
+  echo "Command failed"
+fi
+
+#  if 0, 1, -1, "string" inside "if [  ]" -> Command succeded (trust me)
+#  if <nothing> (aka null) inside "if [  ]" -> Command failed (trust me)
+if [ ]
+then
+  echo "Command succeded"
+else
+  echo "Command failed"
+fi
+
+#  ELIF
+if [[ $(uname) = "Linux" ]]
+then
+  echo "Linus Torvalds"
+elif [[ $(uname) = "Darwin" ]]
+then
+  echo "Steve Jobs"
+else
+  echo "Idk man"
+fi
+
+#  TEST
+if test $(uname) = "Linux"
+then
+  echo "Linus Torvalds"
+elif test $(uname) = "Darwin"
+then
+  echo "Steve Jobs"
+else
+  echo "Idk man"
+fi
+
+#  &&
+[[ -e /etc/passwd ]] && echo "File exists!"
+
+#  && and ||
+if [[ $(uname) = "Linux" ]] || [[ $(uname) = "Darwin" ]]
+then
+  echo "Unix-like"
+fi
+
+#  ! (not)
+if [[ ! $(ls -al | wc -l) -lt 5 ]]
+then
+  echo "Many files here"
+fi
+
+#  FILE OPERATORS
+#  -e -> file exists
+#  -s -> file is not empty
+#  -f -> is file (not directory or device)
+#  -d -> is directory
+#  -b -> is device (block) (sda1)
+#  -c -> is device (character) (ttys1)
+#  -h -> is link
+#  -S -> is socket
+#  -r -> is readable
+#  -w -> is writable
+#  -x -> is executable
+#  -O -> is owned by you
+#  -G -> is owned by your user's group
+#  -N -> is modified since last read
+
+#  VARIABLE OPERATORS
+#  -eq -> is equal              or (($a = $b))
+#  -nq -> is not equal          or (($a != $b))
+#  -gt -> is greater than       or (($a > $b))
+#  -ge -> is greater or equal   or (($a >= $b))
+#  -lt -> is less than          or (($a < $b))
+#  -le -> is less or equal      or (($a <= $b))
+#  -z -> is null
+#  -n -> is not null
+
+#  LOGICAL OPERATORS
+#  -a -> and
+#  -o -> or
