@@ -36,3 +36,31 @@ do
   echo $i
 done
 echo $SECONDS  # for how many seconds the script is running
+
+#  DECLARE - TYPESET
+declare -r a=1      #  readonly
+declare -i b        #  integer
+declare -a dates    #  array
+declare -f          #  function
+declare -x          #  export
+declare | grep HOME #  find enviroment variables
+printenv| grep HOME #  should work like printenv (but it doesn't)
+
+SEED=1
+for i in {0..10}
+do
+  let r=$RANDOM%10+1
+  echo $r
+done; echo
+
+#  String length
+string=ciao
+echo $(expr length $string)
+echo $(expr index $string "a")
+echo $(expr match $string "cia")
+echo ${string:1}
+echo ${string:1:2}
+
+#  Random string
+enc=$(echo $RANDOM | md5sum | md5sum)
+echo ${enc:0:8}

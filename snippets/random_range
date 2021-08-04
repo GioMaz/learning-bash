@@ -1,0 +1,8 @@
+#!/bin/bash
+
+declare -r min=5
+declare -r max=30
+for i in {0..2000}
+do
+  echo $(( RANDOM%(max-min+1)+min ))
+done
